@@ -1,9 +1,29 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+puts "Generating Quests"
+puts "Starting now ..."
+
+15.times do
+  creature = Faker::Games::ElderScrolls.creature
+  Quest.create!(
+    name: "#{creature} Slayer",
+    description: "Slay #{rand(1..10)} #{creature}",
+    reward: rand(10..1000)
+  )
+end
+
+
+puts "Complete!"
+puts "Generated #{Quest.all.length} quests"
+
+puts "Generating Characters"
+puts "Starting now..."
+
+50.times do
+  Character.create!(
+  name: Faker::Games::Witcher.character,
+  weapon: Faker::Games::ElderScrolls.weapon
+  )
+end
+
+
+puts "Complete!"
+puts "Generated #{Character.all.length} characters"
