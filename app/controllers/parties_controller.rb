@@ -11,7 +11,7 @@ class PartiesController < ApplicationController
     if @party.save
       redirect_to quest_path(@quest)
     else
-      render :new, status: :unprocessable_entity
+      render "quests/show", status: :unprocessable_entity
     end
   end
 
