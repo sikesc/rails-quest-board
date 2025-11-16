@@ -1,2 +1,13 @@
-<h1>Quests#new</h1>
-<p>Find me in app/views/quests/new.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn2.inkarnate.com/97aFPHAKk5joziR9R4mk6j);">
+  <div class="container">
+  </div>
+</div>
+<div class="container">
+  <h1>What do you need the heroes to</h1>
+  <%= simple_form_for @quest do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :reward, as: :integer, input_html: { min: 10, max: 1000 }%>
+    <%= f.submit "Post Quest", class: "btn btn-success mt-3" %>
+  <% end %>
+</div>

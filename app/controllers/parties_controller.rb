@@ -11,11 +11,18 @@ class PartiesController < ApplicationController
     if @party.save
       redirect_to quest_path(@quest)
     else
-      render new_quest_party_path(@quest), status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
+  def destroy
+    @party = Party.find(params[:id])
+    @quest = @party.quest
+    @party.destroy
+    redirect_to quest_path(@quest)
+  end
+
   def party_params
-    params.require(:party).permit(:hero_id)
+    params.require(:party).permit(:character_id)
   end
 end

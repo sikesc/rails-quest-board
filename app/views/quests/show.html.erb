@@ -7,5 +7,32 @@
 </div>
 <div class="container">
   <h1>Review your Party</h1>
-  <%= link_to "New party", new_quest_party_path(@quest), class: "btn btn-success" %>
-</div>
+  <div class="quest-links">
+    <%= link_to "Add a Hero to Party", new_quest_party_path(@quest), class: "btn btn-success mt-2 gap-3" %>
+    <%= link_to "Complete This Quest", quest_path(@quest), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-success mt-2 gap-3" %>
+    <%= link_to "Return to Quest Board", quests_path, class: "btn btn-success mt-2 gap-3" %>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <% @quest.parties.each do |party| %>
+        <div class="card-product mt-3">
+          <%#= link_to quest_path(quest), class: "card-link-overlay" do  %>
+            <%# end %>
+            <%= image_tag "https://static.vecteezy.com/system/resources/previews/014/909/829/non_2x/simple-character-silhouette-design-free-vector.jpg", alt: "Character silhouette" %>
+            <div class="card-product-infos">
+              <h2><%= party.character.name %></h2>
+              <p><%= party.character.weapon %></p>
+              <%= link_to "Remove Hero", party_path(party), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-success mt-2" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-4 sticky-top form-col">
+        <h1>Choose a Hero to Add to Your Party</h1>
+        <%= simple_form_for [@quest, @party] do |f| %>
+          <%= f.association :character %>
+          <%= f.submit "Add Character", class: "btn btn-success mt-3" %>
+        <% end %>
+      </div>
+    </div>
+  </div>

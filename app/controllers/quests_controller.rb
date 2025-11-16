@@ -1,10 +1,12 @@
 class QuestsController < ApplicationController
+  before_action :set_quest, only: [:show, :destroy]
+
   def index
     @quests = Quest.all
   end
 
   def show
-    @quest = Quest.find(params[:id])
+    @party = Party.new
   end
 
   def new
@@ -21,12 +23,17 @@ class QuestsController < ApplicationController
   end
 
   def destroy
-
+    @quest.destroy
+    redirect_to quests_path
   end
 
   private
 
   def quest_params
     params.require(:quest).permit(:name, :description, :reward)
+  end
+
+  def set_quest
+    @quest = Quest.find(params[:id])
   end
 end
