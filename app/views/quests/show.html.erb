@@ -1,0 +1,11 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://ludusludorum.com/wp-content/uploads/2016/10/Party-Sil.jpg);">
+  <div class="container">
+    <h1><%= @quest.name %></h1>
+    <p><%= @quest.description %></p>
+    <p><%= @quest.reward %> Gold</p>
+  </div>
+</div>
+<div class="container">
+  <h1>Review your Party</h1>
+  <%= link_to "New party", new_quest_party_path(@quest), class: "btn btn-success" %>
+</div>

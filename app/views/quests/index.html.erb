@@ -1,0 +1,22 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn2.inkarnate.com/97aFPHAKk5joziR9R4mk6j);">
+  <div class="container">
+    <h1>Quest Board</h1>
+    <p>Which quest will you undertake?</p>
+  </div>
+</div>
+<div class="container">
+  <div class="cards">
+    <% @quests.each do |quest| %>
+      <div class="card-product mt-3">
+        <%= link_to quest_path(quest), class: "card-link-overlay" do  %>
+        <% end %>
+        <%= image_tag Quest::QUEST_IMGS.sample, alt: "A quest scroll" %>
+        <div class="card-product-infos">
+          <h2><%= quest.name %></h2>
+          <p><%= quest.description %></p>
+          <p><%= quest.reward %> Gold</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
